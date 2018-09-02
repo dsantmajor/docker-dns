@@ -1,0 +1,42 @@
+$TTL 1h
+
+; -----------------------------------------------------------------------------
+;                      Serial Number Tip
+; -----------------------------------------------------------------------------
+; The value of the serial number is how Bind tells if it needs to send updated 
+; information to the slave server.Note: Failing to increment the serial number
+; is one of the most common mistakes that leads to issues with zone updates. Each 
+; time you make an edit, you must bump the serial number.One common practice is 
+; to use a convention for incrementing the number. One approach is to use the date
+; in YYYYMMDD format along with a revision number for the day added onto the end. 
+; So the first revision made on June 05, 2014 could have a serial number of 
+; 2014060501 and an update made later that day could have a serial number of 
+; 2014060502. The value can be a 10 digit number.
+; -----------------------------------------------------------------------------
+
+
+; -----------------------------------------------------------------------------
+; SOA for cloudnnative.com.zone
+; -----------------------------------------------------------------------------
+@ IN SOA ns1.cloudnnative.com. contact.cloudnnative.com. (
+            2018080201      ; Serial
+            1h              ; Refresh
+            15m             ; Retry
+            1d              ; Expire
+            1h );           ; Negative Cache TTL
+
+; -----------------------------------------------------------------------------
+; zone records or Name Servers
+; -----------------------------------------------------------------------------
+cloudnnative.com.       1800    IN    NS        ns1.cloudnnative.com.
+
+; -----------------------------------------------------------------------------
+; pointer records or NameServer to actual IP mapping
+; -----------------------------------------------------------------------------
+ns1                 1800    IN    A         192.168.0.21
+rancher             1800    IN    A         192.168.0.22
+
+; -----------------------------------------------------------------------------
+; cname records
+; -----------------------------------------------------------------------------
+webmail             3600    IN    CNAME     www.example.com.
